@@ -1,5 +1,5 @@
 import unittest
-from milan_function import milan_function
+from Function_for_unit_test import milan_function
 
 def test_milan_function():
     assert milan_function(2, 3) == 5
