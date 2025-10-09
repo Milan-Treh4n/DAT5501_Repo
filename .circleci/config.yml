@@ -10,12 +10,11 @@ jobs:
       - run: pip install -r requirements.txt
       - run:
           name: Run unit tests
-          command: pytest
-          # or if your tests live in a folder like "tests/"
-          # command: pytest tests/
+          command: pytest tests/
 
 workflows:
   version: 2
   build:
     jobs:
       - build
+
