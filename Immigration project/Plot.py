@@ -47,14 +47,14 @@ merged_data = pd.merge(
 )
 merged_data.set_index('Year', inplace=True)
 
-# --- Plotting the data with a Dual-Axis Chart ---
+# --- Plotting the data with a Combination Bar and Line Chart ---
 fig, ax1 = plt.subplots(figsize=(14, 7))
 
-# Plot Total Employment on the primary Y-axis (ax1)
+# Plot Total Employment as a Bar Chart on the primary Y-axis (ax1)
 color = 'tab:blue'
 ax1.set_xlabel('Year', fontsize=12)
 ax1.set_ylabel('Total Employment (in tens of millions)', color=color, fontsize=12)
-line1 = ax1.plot(merged_data.index, merged_data['Approx total number of employees'], color=color, marker='o', label='Total Employment')
+bar1 = ax1.bar(merged_data.index, merged_data['Approx total number of employees'], color=color, alpha=0.7, label='Total Employment')
 ax1.tick_params(axis='y', labelcolor=color)
 ax1.grid(True, linestyle='--', alpha=0.6)
 
@@ -66,15 +66,17 @@ line2 = ax2.plot(merged_data.index, merged_data['Total number of emmigrants'], c
 ax2.tick_params(axis='y', labelcolor=color)
 
 # --- Graph styling ---
-plt.title('UK Employment vs Emigration Over Years', fontsize=16, fontweight='bold')
+plt.title('UK Employment (Bars) vs Emigration (Line) Over Years', fontsize=16, fontweight='bold')
+plt.xticks(merged_data.index, rotation=45) # Rotate year labels for better readability
 
-# Create a single legend for both lines
-lines = line1 + line2
-labels = [l.get_label() for l in lines]
-ax1.legend(lines, labels, loc='upper left')
+# Create a single legend for both the bar and line plots
+# We get the handles from the line plot and create a handle for the bar plot
+handles, labels = ax2.get_legend_handles_labels()
+ax1.legend(handles=[bar1] + handles, labels=['Total Employment'] + labels, loc='upper left')
 
 fig.tight_layout()  # Adjusts plot to prevent labels from overlapping
 plt.show()
+
 
 
 
