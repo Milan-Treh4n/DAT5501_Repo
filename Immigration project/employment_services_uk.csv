@@ -1,5 +1,5 @@
 ﻿Entity,Year,Number of people employed in services ,Number of people employed in industry ,number_employed_agri
-United Kingdom,1990,18202283,7741974,
+United Kingdom,1990,18202283,7741974,N/A
 United Kingdom,1991,18000806,7108901,624672.651
 United Kingdom,1992,18083229,6680303,606610.664
 United Kingdom,1993,17870620,6322228,584502.69
@@ -21,11 +21,11 @@ United Kingdom,2008,22322972,5316355,342006.497
 United Kingdom,2009,22054919,4958757,353564.475
 United Kingdom,2010,22734404,5284408,390881.08
 United Kingdom,2011,23088919,5513972,393174.436
-United Kingdom,2012,,,387736.862
-United Kingdom,2013,,,348731.035
-United Kingdom,2014,,,418275.317
-United Kingdom,2015,,,381706.594
-United Kingdom,2016,,,381935.49
-United Kingdom,2017,,,394531.057
-United Kingdom,2018,,,367346.233
-United Kingdom,2019,,,363712.36
+United Kingdom,2012,N/A,N/A,387736.862
+United Kingdom,2013,N/A,N/A,348731.035
+United Kingdom,2014,N/A,N/A,418275.317
+United Kingdom,2015,N/A,N/A,381706.594
+United Kingdom,2016,N/A,N/A,381935.49
+United Kingdom,2017,N/A,N/A,394531.057
+United Kingdom,2018,N/A,N/A,367346.233
+United Kingdom,2019,N/A,N/A,363712.36

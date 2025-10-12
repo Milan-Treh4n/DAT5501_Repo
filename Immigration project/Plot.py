@@ -14,15 +14,15 @@ for col in emigration.columns[1:]:
     emigration[col] = emigration[col].apply(lambda x: float(str(x).replace(',', '')) if isinstance(x, str) else x)
 
 # Drop rows with any NaN values
-employement.dropna(inplace=True)
+employment.dropna(inplace=True)
 emigration.dropna(inplace=True)
 
 # Convert 'Year' column to integer
-employement['Year'] = employement['Year'].astype(int)
+employment['Year'] = employment['Year'].astype(int)
 emigration['Year'] = emigration['Year'].astype(int)
 
 # Merge datasets on 'Year'
-merged_data = pd.merge(employement, emigration, on='Year', suffixes=('_employment', '_emigration'))
+merged_data = pd.merge(employment, emigration, on='Year', suffixes=('_employment', '_emigration'))
 merged_data.set_index('Year', inplace=True)
 
 # Plotting the data
