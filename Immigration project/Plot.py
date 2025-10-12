@@ -57,15 +57,7 @@ plt.plot(
     color='red',
     marker='o'
 )
+print("Merged data columns:", merged_data.columns.tolist())
+print(merged_data.head())
 
-# --- Graph styling ---
-plt.title('UK Employment vs Emigration Over Years', fontsize=16, fontweight='bold')
-plt.xlabel('Year', fontsize=12)
-plt.ylabel('Number of People', fontsize=12)
-plt.legend()
-plt.grid(True, linestyle='--', alpha=0.6)
-plt.tight_layout()
-
-# --- Show the plot ---
-plt.show()
 
