@@ -65,7 +65,7 @@ ax2 = ax1.twinx()
 ax2.plot(
     merged.index,
     merged['Total number of emmigrants'],
-    color='purple',
+    color='teal',
     marker='o',
     linewidth=2.5,
     label='Total Emigration'

@@ -33,7 +33,7 @@ plt.figure(figsize=(12, 6))
 plt.plot(
     merged.index,
     merged['Approx total number of employees'],
-    color='purple',
+    color='red',
     linewidth=2.5,
     marker='o',
     label='Total Employment'
