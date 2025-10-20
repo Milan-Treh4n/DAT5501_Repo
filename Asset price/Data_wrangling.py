@@ -10,7 +10,7 @@ csv_path = os.path.join(script_dir, 'apple_historical_data.csv')
 # Read the CSV using this full, correct path
 df = pd.read_csv(csv_path)
 
-# --- Rest of your data wrangling code ---
+# Data Cleaning Steps
 
 # 1. Clean 'Close/Last' column
 df['Close/Last'] = df['Close/Last'].astype(str).str.replace('$', '')
