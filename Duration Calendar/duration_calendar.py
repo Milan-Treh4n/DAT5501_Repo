@@ -1,13 +1,17 @@
 import datetime
 import numpy as np
 
+# Calculate the difference in days between a given date and today
 def calculate_days_difference(date_str: str) -> int:
     """Calculate how many days between a given date and today."""
+   
+    # Convert input string to numpy datetime64
     try:
         input_date = np.datetime64(date_str)
     except ValueError:
         raise ValueError("Invalid date format. Use YYYY-MM-DD.")
 
+# Get today's date as numpy datetime64
     today = np.datetime64(datetime.datetime.now().date())
     return int((today - input_date).astype(int))
 
