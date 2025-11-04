@@ -3,10 +3,10 @@ import os
 import matplotlib.pyplot as plt
 
 # Get the absolute path to the directory where this script is located
-script_dir = os.path.dirname(__file__)
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Define the correct name of data file
-file_name = 'US-2016-primary.csv' 
+file_name = 'US-2016-primary.csv'
 
 # Join the script's directory path with the file name to get the full, correct path
 file_path = os.path.join(script_dir, file_name)
@@ -22,9 +22,8 @@ try:
     print("\n--- Column Data Types ---")
     print(df_primary.dtypes)
 
-    # Plotting section 
-    # Choose a candidate
-    candidate_name = "Donald Trump"  
+    # Plotting section
+    candidate_name = "Donald Trump"
 
     # Group by state and candidate, sum votes
     state_totals = df_primary.groupby("state")["votes"].sum()
@@ -34,13 +33,21 @@ try:
     vote_fraction = (candidate_votes / state_totals).dropna()
 
     # Plot histogram
-    plt.figure(figsize=(10,6))
+    plt.figure(figsize=(10, 6))
     plt.hist(vote_fraction, bins=15, edgecolor='black')
     plt.title(f"Histogram of Fraction of Votes for {candidate_name} by State")
     plt.xlabel("Fraction of Votes")
     plt.ylabel("Number of States")
     plt.grid(True, alpha=0.3)
-    plt.show()
+
+    # Save the plot image to the repo
+    plot_filename = f"{candidate_name.replace(' ', '_')}_vote_fraction_histogram.png"
+    plot_path = os.path.join(script_dir, plot_filename)
+    plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+
+    print(f"\nPlot saved as: {plot_path}")
+
+    # plt.show()
 
 except FileNotFoundError:
     print(f"Error: Could not find the file at the path: {file_path}")
