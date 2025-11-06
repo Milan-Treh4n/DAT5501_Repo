@@ -2,7 +2,10 @@ import random
 import os
 from PIL import Image
 # Ask the user for their choice
-user_choice = input("Enter your choice (rock, paper, scissors): ").lower() 
+user_choice = input("Enter your choice (rock, paper, scissors): ").lower()
+if not user_choice:
+    print("No choice made! Exiting the game.")
+    exit()
 
 # Validate user input
 if user_choice not in ['rock', 'paper', 'scissors']:
