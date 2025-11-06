@@ -7,11 +7,6 @@ if not user_choice:
     print("No choice made! Exiting the game.")
     exit()
 
-# Ask user if they would like to continue playing
-play_again = input("Do you want to play the game? (yes/no): ").lower()
-if play_again != 'yes':
-    print("Thanks for playing! Goodbye.")
-    exit()
 
 # Validate user input
 if user_choice not in ['rock', 'paper', 'scissors']:
@@ -41,3 +36,9 @@ else:
     print("Computer wins!")
     img_path = os.path.join(os.path.dirname(__file__), "computer_win.png")
     Image.open(img_path).show()
+
+# Ask user if they would like to continue playing
+play_again = input("Do you want to play the game? (yes/no): ").lower()
+if play_again != 'yes':
+    print("Thanks for playing! Goodbye.")
+    exit()
