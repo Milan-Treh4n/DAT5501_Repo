@@ -1,13 +1,19 @@
 import random
 import os
 from PIL import Image
+import matplotlib.pyplot as plt   # Added for reliable image display
 
 def show_image(filename):
     try:
         img_path = os.path.join(os.path.dirname(__file__), filename)
-        Image.open(img_path).show()
+        img = Image.open(img_path)
+
+        # Display image in a Python window (works on any computer)
+        plt.imshow(img)
+        plt.axis('off')
+        plt.show()
     except Exception:
-        pass
+        pass  # Silent fail if image missing
 
 rounds_played = 0
 
