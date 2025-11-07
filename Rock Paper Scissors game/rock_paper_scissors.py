@@ -11,7 +11,7 @@ def show_image(filename):
         pass
 
 while True:  # Loops the entire game until the user decides to quit
-    user_choice = input("Enter your choice (rock, paper, scissors): ").lower().strip()
+    user_choice = input("Enter your choice (rock, paper, scissors, exit): ").lower().strip()
 
     # Validate user input
     if user_choice not in ['rock', 'paper', 'scissors', 'exit']:
