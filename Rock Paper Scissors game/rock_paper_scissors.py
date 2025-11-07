@@ -57,7 +57,7 @@ while True:  # Keep playing until user confirms exit
         print("Computer wins!")
         show_image("computer_win.png")
 
-    print("Great! Let's play again.")
+    print("Let's play again.")
 
 
 
