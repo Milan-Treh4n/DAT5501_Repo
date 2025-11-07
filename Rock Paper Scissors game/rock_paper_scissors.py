@@ -11,23 +11,24 @@ def show_image(filename):
 
 rounds_played = 0
 
-while True:  # Keep playing until the user types exit
+while True:  # Keep playing until user confirms exit
     user_choice = input("Enter your choice (rock, paper, scissors, exit): ").lower().strip()
 
-    # Exit behavior depends on whether we've played any rounds yet
     if user_choice == 'exit':
-        if rounds_played == 0:
-            print("Maybe next time! Goodbye.")
+        confirm = input("Are you sure you want to exit? (yes/no): ").lower().strip()
+        if confirm == 'yes':
+            print("Ok see you next time.")
+            break
         else:
-            print("Thanks for playing! Goodbye.")
-        break
+            print("Great! Let's play again.")
+            continue
 
     # Validate input
     if user_choice not in ['rock', 'paper', 'scissors']:
         print("Invalid choice! Please choose rock, paper, or scissors, or exit the game")
         continue
 
-    # Valid round — increment counter
+    # Valid round
     rounds_played += 1
 
     # Computer plays
@@ -50,8 +51,8 @@ while True:  # Keep playing until the user types exit
         print("Computer wins!")
         show_image("computer_win.png")
 
-    # Continue automatically
-    print("Let's play again.")
+    print("Great! Let's play again.")
+
 
 
 
