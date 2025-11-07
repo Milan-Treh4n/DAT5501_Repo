@@ -1,4 +1,3 @@
-# ...existing code...
 import random
 import os
 from PIL import Image
@@ -12,14 +11,15 @@ def show_image(filename):
 
 while True:  # Loops the entire game until the user decides to quit
     user_choice = input("Enter your choice (rock, paper, scissors): ").lower().strip()
+
     if not user_choice:
         print("No choice made! Exiting the game.")
-        exit()
+        break  # Was exit(), now just ends the loop safely
 
     # Validate user input
     if user_choice not in ['rock', 'paper', 'scissors']:
         print("Invalid choice! Please choose rock, paper, or scissors.")
-        exit()
+        continue  # Was exit(), now restart without quitting the game
 
     # Generate computer choice
     computer_choice = random.choice(['rock', 'paper', 'scissors'])
@@ -43,12 +43,15 @@ while True:  # Loops the entire game until the user decides to quit
 
     # Ask user if they would like to continue playing
     play_again = input("Do you want to play the game? (yes/no): ").lower().strip()
+
     if play_again != 'yes':
         print("Thanks for playing! Goodbye.")
-        exit()
+        break  # End game
     else:
         print("Great! Let's play again.")
+        # Loop restarts automatically
         continue
+
 
 
     
