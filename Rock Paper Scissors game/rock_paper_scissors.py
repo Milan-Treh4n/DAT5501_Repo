@@ -9,24 +9,32 @@ def show_image(filename):
     except Exception:
         pass
 
-while True:  # Loops the entire game until the user decides to quit
+rounds_played = 0
+
+while True:  # Keep playing until the user types exit
     user_choice = input("Enter your choice (rock, paper, scissors, exit): ").lower().strip()
 
-    # Validate user input
-    if user_choice not in ['rock', 'paper', 'scissors', 'exit']:
+    # Exit behavior depends on whether we've played any rounds yet
+    if user_choice == 'exit':
+        if rounds_played == 0:
+            print("Maybe next time! Goodbye.")
+        else:
+            print("Thanks for playing! Goodbye.")
+        break
+
+    # Validate input
+    if user_choice not in ['rock', 'paper', 'scissors']:
         print("Invalid choice! Please choose rock, paper, or scissors, or exit the game")
         continue
 
-    # User exits BEFORE playing → say "Maybe next time"
-    if user_choice == 'exit':
-        print("Maybe next time! Goodbye.")
-        break
+    # Valid round — increment counter
+    rounds_played += 1
 
-    # Generate computer choice
+    # Computer plays
     computer_choice = random.choice(['rock', 'paper', 'scissors'])
     print(f"Computer chose: {computer_choice}")
 
-    # Determine the winner
+    # Determine winner
     if user_choice == computer_choice:
         print("It's a tie!")
     elif user_choice == "rock" and computer_choice == "scissors":
@@ -42,20 +50,10 @@ while True:  # Loops the entire game until the user decides to quit
         print("Computer wins!")
         show_image("computer_win.png")
 
-    # Ask user if they would like to continue playing AFTER playing
-    play_again = input("Do you want to play the game? (yes/no): ").lower().strip()
+    # Continue automatically
+    print("Let's play again.")
 
-    if play_again == 'yes':
-        print("Great! Let's play again.")
-        continue
 
-    elif play_again == 'no':
-        print("Thanks for playing! Goodbye.")
-        break
-
-    else:
-        print("Invalid input! Exiting the game.")
-        break
 
 
 
