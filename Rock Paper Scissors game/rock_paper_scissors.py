@@ -12,9 +12,6 @@ def show_image(filename):
 
 while True:  # Loops the entire game until the user decides to quit
     user_choice = input("Enter your choice (rock, paper, scissors): ").lower().strip()
-    if not user_choice:
-        print("No choice made! Exiting the game.")
-        
 
     # Validate user input
     if user_choice not in ['rock', 'paper', 'scissors']:
@@ -40,6 +37,7 @@ while True:  # Loops the entire game until the user decides to quit
     else:
         print("Computer wins!")
         show_image("computer_win.png")
+        continue
 
     # Ask user if they would like to continue playing
     play_again = input("Do you want to play the game? (yes/no): ").lower().strip()
