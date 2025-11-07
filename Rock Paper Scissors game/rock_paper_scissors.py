@@ -14,12 +14,17 @@ while True:  # Loops the entire game until the user decides to quit
     user_choice = input("Enter your choice (rock, paper, scissors): ").lower().strip()
 
     # Validate user input
-    if user_choice not in ['rock', 'paper', 'scissors']:
-        print("Invalid choice! Please choose rock, paper, or scissors.")
+    if user_choice not in ['rock', 'paper', 'scissors', 'exit']:
+        print("Invalid choice! Please choose rock, paper, or scissors. Or exit the game")
+        
         continue
 
+    if user_choice == 'exit':
+        print("Maybe necxt time! Goodbye.")
+        break
+
     # Generate computer choice
-    computer_choice = random.choice(['rock', 'paper', 'scissors'])
+    computer_choice = random.choice(['rock', 'paper', 'scissors',])
     print(f"Computer chose: {computer_choice}")
 
     # Determine the winner
@@ -34,19 +39,24 @@ while True:  # Loops the entire game until the user decides to quit
     elif user_choice == "scissors" and computer_choice == "paper":
         print("You win!")
         show_image("scissors_win.png")
+    elif user_choice == "exit":
+        print("Thanks for playing! Goodbye.")
+        break
     else:
         print("Computer wins!")
         show_image("computer_win.png")
         continue
 
-    # Ask user if they would like to continue playing
+    # Ask user if they would like to continue playing after they exit the game
     play_again = input("Do you want to play the game? (yes/no): ").lower().strip()
-    if play_again != 'yes':
-        print("Thanks for playing! Goodbye.")
-        exit()
-    else:
+    if play_again == 'yes':
         print("Great! Let's play again.")
-        continue
+    elif play_again == 'no':
+        print("Thanks for playing! Goodbye.")
+        break
+    else:
+        print("Invalid input! Exiting the game.")
+        break
 
 
     
