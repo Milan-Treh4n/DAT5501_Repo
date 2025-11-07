@@ -14,12 +14,12 @@ while True:  # Loops the entire game until the user decides to quit
     user_choice = input("Enter your choice (rock, paper, scissors): ").lower().strip()
     if not user_choice:
         print("No choice made! Exiting the game.")
-        exit()
+        
 
     # Validate user input
     if user_choice not in ['rock', 'paper', 'scissors']:
         print("Invalid choice! Please choose rock, paper, or scissors.")
-        exit()
+        continue
 
     # Generate computer choice
     computer_choice = random.choice(['rock', 'paper', 'scissors'])
