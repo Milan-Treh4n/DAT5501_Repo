@@ -9,11 +9,11 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(script_dir, 'cleaned_apple_data.csv')
 df = pd.read_csv(csv_path)
 
-# ensure numeric and compute daily changes ΔP = P[n] - P[n-1]
+# Ensure numeric and compute daily changes
 df['Close/Last'] = pd.to_numeric(df['Close/Last'], errors='coerce')
 delta = df['Close/Last'].diff().dropna().to_numpy()  # length L
 
-# n range: 7 .. min(365, len(delta))
+# n values to test sorting time
 max_n = min(365, len(delta))
 ns = np.arange(7, max_n + 1)
 
@@ -33,12 +33,12 @@ for n in ns:
 ns = np.array(ns)
 times = np.array(times)
 
-# compare to n * log2(n): fit scale factor c so c * n log2 n ~ T (least squares)
+# Fit times to n log n
 nlog = ns * np.log2(ns)
 c = (times @ nlog) / (nlog @ nlog)
 pred = c * nlog
 
-# Plot T vs n and scaled n log n
+# Plot results
 plt.figure(figsize=(8,5))
 plt.plot(ns, times, label='Measured sort time (s)', marker='o', markersize=4)
 plt.plot(ns, pred, label=f'scaled n·log2(n) (c={c:.3e})', linestyle='--')
