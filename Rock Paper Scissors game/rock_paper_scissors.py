@@ -3,8 +3,8 @@ import base64
 from io import BytesIO
 from PIL import Image
 
-# Import your base64 dictionary
-from base_64_for_images import base_64_variables as images
+# Import base64 dictionary
+from base64_for_images import base64_variables as images
 
 # Function to display image from base64
 def show_image_from_base64(b64_string) -> None:
