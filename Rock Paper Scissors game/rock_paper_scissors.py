@@ -4,7 +4,7 @@ import tempfile
 from io import BytesIO
 from PIL import Image
 
-# Import your dictionary from the subfolder
+# Import dictionary from the subfolder
 from base64_for_images.base64_variables import base_64_variables as images
 
 # Function to display image from base64
