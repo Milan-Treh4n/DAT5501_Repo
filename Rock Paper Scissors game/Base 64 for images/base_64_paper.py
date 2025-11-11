@@ -1,6 +1,6 @@
 import base64
 
-# Replace "rock_win.png" with the file you want
+# Generate base64 string for paper_win.png
 with open("paper_win.png", "rb") as f:
     b64_string = base64.b64encode(f.read()).decode('utf-8')
 

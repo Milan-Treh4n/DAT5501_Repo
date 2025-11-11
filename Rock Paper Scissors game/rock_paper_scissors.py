@@ -10,10 +10,10 @@ from PIL import Image
 json_path = os.path.join(os.path.dirname(__file__), "Base 64 for images", "base64_variables.json")
 
 with open(json_path, "r") as f:
-    images = json.load(f)
+    images = json.load(f) # Load base64 strings as dictionary
 
 # Function to display image from base64
-def show_image_from_base64(b64_string):
+def show_image_from_base64(b64_string) -> None:
     try:
         image_data = base64.b64decode(b64_string)
         img = Image.open(BytesIO(image_data))
