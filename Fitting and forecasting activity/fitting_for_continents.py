@@ -57,7 +57,7 @@ for continent in continents:
         # (Removed the "Skipping" print statement)
         continue
 
-    # --- If we get here, the continent has valid data ---
+# print header for this continent
 
     print(f"\n=======================================================")
     print(f"--- Analyzing Continent: {continent.upper()} ---")
@@ -85,7 +85,7 @@ for continent in continents:
         # Use the function to forecast the 10 'future' years
         forecast_values = p(future_years)
         
-        # --- Print the Results ---
+        # Print the Results
 
         print(f"\n--- Forecast (Order {degree}): {continent} ---")
         print(" Year | Forecast |  Actual")
