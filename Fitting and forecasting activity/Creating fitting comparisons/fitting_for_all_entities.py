@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 import sys
 import warnings
 
@@ -50,10 +51,10 @@ if len(all_years) < 11:
     sys.exit()
 
 # Prepare the 'training' data
-training_years = all_years[:-10]  # All years except the last 10
+training_years = all_years[:-10] 
 training_data = np.array(avg_le_by_year.loc[training_years])
 
-# Prepare the 'future' years (last 10 years)
+# Prepare the 'future' years for next 10 years
 future_years = all_years[-10:]
 actual_data = np.array(avg_le_by_year.loc[future_years])
 
@@ -62,22 +63,17 @@ print(f"Forecasting 10 years (from {future_years[0]} to {future_years[-1]}).")
 
 #  Polynomial Fitting and Forecasting
 for degree in range(1, 10):
-    # Fit a polynomial model of the specified degree to the training data
     model_coeffs = np.polyfit(training_years, training_data, degree)
     
     # Create a polynomial function from the model's coefficients
     p = np.poly1d(model_coeffs)
     
-    # Use the function to forecast the 10 'future' years
     forecast_values = p(future_years)
-    
-    # --- Print the Results ---
-    
+    #  Display the results
     print(f"\n--- Forecast (Order {degree}): Avg. (Excl. Continents) ---")
     print(" Year | Forecast |  Actual")
     print("---------------------------------")
-    
-    # Loop through the 10 future years and print the forecast vs. actual
+    # Print forecast vs actual for each of the 10 future years
     for i in range(len(future_years)):
         year = future_years[i]
         forecast = forecast_values[i]
@@ -85,3 +81,4 @@ for degree in range(1, 10):
         print(f" {year} | {forecast:8.2f} | {actual:7.2f}")
 
 print("\nAnalysis complete.")
+
