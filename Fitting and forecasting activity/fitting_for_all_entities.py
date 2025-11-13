@@ -3,8 +3,7 @@ import numpy as np
 import sys
 import warnings
 
-# Data Loading and Preparation
-
+#  Data Loading and Preparation
 warnings.filterwarnings("ignore", category=np.RankWarning)
 
 # Try to load the dataset
@@ -23,17 +22,37 @@ df.rename(columns={
     'Period life expectancy at birth': 'Life_Expectancy'
 }, inplace=True)
 
-print("Data loaded. Calculating global average life expectancy per year...")
+# Define the list of continents to exclude
+continents_to_exclude = ['Africa', 'Asia', 'Europe', 'Oceania']
 
-# Group by 'Year' and get the mean 'Life_Expectancy'
-avg_le_by_year = df.groupby('Year')['Life_Expectancy'].mean()
+# Filter the DataFrame to exclude continent data
+df_filtered = df[~df['Entity'].isin(continents_to_exclude)].copy()
 
-# Get all unique years from new data and sort them
+if df_filtered.empty:
+    print("Error: Filtering out continents left no data.")
+    sys.exit()
+
+print("Data loaded. Calculating average life expectancy (excluding continents)...")
+
+# Calculate average life expectancy per year, excluding continents
+avg_le_by_year = df_filtered.groupby('Year')['Life_Expectancy'].mean()
+
+if avg_le_by_year.empty:
+    print("Error: Could not calculate average life expectancy from filtered data.")
+    sys.exit()
+
+#  Data Splitting (Training and Forecasting Sets)
 all_years = np.array(avg_le_by_year.index.sort_values())
-# Prepare the 'M' values (independent variable)
-training_M = all_years[:-10]  # All years except the last 10
-training_years = all_years[:-10]
+
+# Check if there is enough data to split
+if len(all_years) < 11:
+    print(f"Error: Not enough data (need > 10 years). Found only {len(all_years)}.")
+    sys.exit()
+
+# Prepare the 'training' data
+training_years = all_years[:-10]  # All years except the last 10
 training_data = np.array(avg_le_by_year.loc[training_years])
+
 # Prepare the 'future' years (last 10 years)
 future_years = all_years[-10:]
 actual_data = np.array(avg_le_by_year.loc[future_years])
@@ -41,10 +60,10 @@ actual_data = np.array(avg_le_by_year.loc[future_years])
 print(f"Training on {len(training_years)} years (from {training_years[0]} to {training_years[-1]}).")
 print(f"Forecasting 10 years (from {future_years[0]} to {future_years[-1]}).")
 
-# Polynomial Regression and Forecasting
+#  Polynomial Fitting and Forecasting
 for degree in range(1, 10):
-    # Fit a polynomial model of the specified degree
-    model_coeffs = np.polyfit(training_M, training_data, degree)
+    # Fit a polynomial model of the specified degree to the training data
+    model_coeffs = np.polyfit(training_years, training_data, degree)
     
     # Create a polynomial function from the model's coefficients
     p = np.poly1d(model_coeffs)
@@ -54,7 +73,7 @@ for degree in range(1, 10):
     
     # --- Print the Results ---
     
-    print(f"\n--- Forecast: Polynomial Order {degree} ---")
+    print(f"\n--- Forecast (Order {degree}): Avg. (Excl. Continents) ---")
     print(" Year | Forecast |  Actual")
     print("---------------------------------")
     
