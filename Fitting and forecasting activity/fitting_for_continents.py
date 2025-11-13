@@ -24,25 +24,18 @@ df.rename(columns={
 }, inplace=True)
 
 # Define the list of continents to analyse
-continents = ['Africa', 'Asia', 'Europe', 'North America', 'South America', 'Oceania']
+continents = ['Africa', 'Asia', 'Europe', 'Oceania']
 
 # Filter the DataFrame to only include continent data
 df_continents = df[df['Entity'].isin(continents)].copy()
 
 if df_continents.empty:
-    print("Error: Could not find any continent data in the 'Entity' column.")
-    print("Looked for:", continents)
+    # Silently exit if no continent data is found
     sys.exit()
-
-print(f"Found continent data. Analyzing {len(continents)} continents...")
-
 
 #  Main Analysis Loop (per continent) 
 for continent in continents:
-    print(f"\n=======================================================")
-    print(f"--- Analyzing Continent: {continent.upper()} ---")
-    print(f"=======================================================")
-
+    
    #  Data Extraction (for this continent)
     try:
         continent_data_series = df_continents[
@@ -50,19 +43,27 @@ for continent in continents:
         ].set_index('Year')['LifeExpectancy'].sort_index()
         
         if continent_data_series.empty:
-            print(f"No data found for {continent}.")
+            # (Removed the "No data found" print statement)
             continue # Skip to the next continent
     except Exception as e:
-        print(f"Error processing data for {continent}: {e}")
+        # (Silently skip on other errors too)
         continue
-# Data Splitting (Training and Forecasting Sets)
+
+    # Data Splitting (Training and Forecasting Sets)
     all_years = np.array(continent_data_series.index)
 
     # Check if there is enough data to split
     if len(all_years) < 11:
-        print(f"Skipping {continent}: Not enough data (need > 10 years).")
+        # (Removed the "Skipping" print statement)
         continue
-# The 'past' (training data) is all years except the last 10
+
+    # --- If we get here, the continent has valid data ---
+
+    print(f"\n=======================================================")
+    print(f"--- Analyzing Continent: {continent.upper()} ---")
+    print(f"=======================================================")
+
+    # The 'past' (training data) is all years except the last 10
     training_years = all_years[:-10]
     training_data = np.array(continent_data_series.loc[training_years])
 
@@ -73,7 +74,7 @@ for continent in continents:
     print(f"Training on {len(training_years)} years (from {training_years[0]} to {training_years[-1]}).")
     print(f"Forecasting 10 years (from {future_years[0]} to {future_years[-1]}).")
 
-#  Polynomial Fitting and Forecasting (for degrees 1 to 9)
+    #  Polynomial Fitting and Forecasting (for degrees 1 to 9)
     for degree in range(1, 10):
         # Fit a polynomial model of the specified degree to the training data
         model_coeffs = np.polyfit(training_years, training_data, degree)
