@@ -54,7 +54,7 @@ for degree in range(1, 10):
     
     # --- Print the Results ---
     
-    print(f"\n--- 📈 Forecast: Polynomial Order {degree} ---")
+    print(f"\n--- Forecast: Polynomial Order {degree} ---")
     print(" Year | Forecast |  Actual")
     print("---------------------------------")
     
