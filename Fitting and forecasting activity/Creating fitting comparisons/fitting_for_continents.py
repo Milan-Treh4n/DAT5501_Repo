@@ -7,17 +7,28 @@ import os
 
 #  Data Loading and Preparation
 warnings.filterwarnings("ignore", category=np.RankWarning)
+# Locate the CSV file
+csv_name = "life_expectancy.csv"
+script_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
+csv_path = os.path.join(script_dir, csv_name)
 
-# Try to load the dataset
-try:
-    df = pd.read_csv("life_expectancy.csv")
-except FileNotFoundError:
-    print("Error: 'life_expectancy.csv' not found.")
-    print("Please make sure the file is in the same directory as the script.")
-    sys.exit()
-except Exception as e:
-    print(f"An error occurred while loading the file: {e}")
-    sys.exit()
+# If not found, search up to 3 levels up
+if not os.path.exists(csv_path):
+    parent = script_dir
+    for _ in range(3):
+        parent = os.path.dirname(parent)
+        candidate = os.path.join(parent, csv_name)
+        if os.path.exists(candidate):
+            csv_path = candidate
+            break
+
+if not os.path.exists(csv_path):
+    print(f"Error: '{csv_name}' not found near {script_dir}")
+    print("Place the CSV in the same folder as this script or in a parent folder.")
+    sys.exit(1)
+
+# Load the dataset
+df = pd.read_csv(csv_path)
 
 # Rename the long column for easier use
 df.rename(columns={
