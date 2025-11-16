@@ -1,65 +1,109 @@
+# .circleci
 
-This folder contains CircleCI configuration and minimal test code for the DAT5501_Repo. It is intended to run automated tests and any CI checks configured in `config.yml`.
+This folder contains simple CircleCI configuration and a tiny example test. It is used to show how continuous integration (CI) can run tests automatically for the repository.
 
-## Contents
-- `config.yml` — CircleCI pipeline configuration.
-- `milan_function.py` — Example/module under test.
-- `requirements.txt` — Python dependencies used by the CI job(s).
-- `test_milan.py` — Pytest test file for `milan_function.py`.
+Why this folder exists
+- Demonstrates a basic CI pipeline that installs dependencies and runs tests.
+- Provides a minimal example you can run locally to understand CI behaviour.
+- Keeps CI-related files together so the rest of the project stays clean.
 
-## Purpose
-- Provide a reproducible CI pipeline (via CircleCI) that installs dependencies and runs the test suite.
-- Allow local reproduction of the CI steps for development and debugging.
+What is here
+- `config.yml` — CircleCI pipeline configuration (what the CI server runs).
+- `requirements.txt` — Python packages needed by the CI job and the tests.
+- `milan_function.py` — Small example module used by the tests.
+- `test_milan.py` — A minimal pytest test for the example module.
 
-## Quick start (local)
-1. Create and activate a virtual environment (macOS):
+Simple explanation of CI (for beginners)
+- Continuous Integration (CI) runs automated tasks (like tests) whenever code changes.
+- CircleCI reads `config.yml` and runs the steps defined there (install, test, etc.).
+- CI helps catch errors early and ensures code in the repository works consistently.
+
+Run the example locally (very simple)
+1. Open a terminal in the repository root.
+2. Create and activate a virtual environment:
    ```
    python3 -m venv .venv
    source .venv/bin/activate
    ```
-
-2. Install dependencies:
+3. Install dependencies:
    ```
    pip install -r .circleci/requirements.txt
    ```
-
-3. Run tests:
+4. Run the tests with pytest:
    ```
    pytest -q .circleci/test_milan.py
    ```
 
-## Running the CircleCI config locally (optional)
-If you have the CircleCI CLI installed, you can run the job locally to mirror CI behavior:
-```
-circleci local execute --config .circleci/config.yml
-```
-(See CircleCI docs for installation and required Docker runtime.)
+If you see tests pass, the CI pipeline would likely pass too (assuming similar environment).
 
-## Notes for maintainers
-- Keep `requirements.txt` in sync with dependencies used in the rest of the repository.
-- Ensure `config.yml` references the correct Python version and paths if project layout changes.
-- Tests in `test_milan.py` should remain small, deterministic, and fast so CI stays responsive.
+Troubleshooting (common beginner issues)
+- "Module not found" — make sure your virtual environment is activated and you installed requirements.
+- Wrong Python version — check `config.yml` for the Python version used in CI and use the same locally.
+- Path problems — run the commands from the repository root so paths like `.circleci/test_milan.py` resolve.
 
-## Troubleshooting
-- If tests fail locally but pass on CI, check Python version and installed package versions.
-- If CircleCI fails to locate files, confirm the `working_directory` and relative paths in `config.yml`.
+Notes for learning
+- Open `config.yml` to see a step-by-step description of what CI does (install, run tests).
+- Open `test_milan.py` and `milan_function.py` to see a minimal example of a function and its test.
+- If you want to try CircleCI locally, the CircleCI CLI can emulate jobs, but it is optional.
 
-## Contributing
-- Add new tests alongside `test_milan.py` or add new test files under `.circleci/` if they are specific to CI examples.
-- Update `requirements.txt` when adding new runtime/test dependencies.
+Contributing tips
+- Keep tests small and deterministic (no random behaviour).
+- Add new test files under `.circleci/` or the repo test folder and update `requirements.txt` if you add dependencies.
+- Update `config.yml` if CI needs additional steps (linting, formatting, coverage).
 
-```// filepath: /Users/milansmacbook/University year 2/DAT5501/DAT5501_Repo/.circleci/README.md
-# .circleci
+This file is intended as a gentle introduction so you can run and understand the simple CI example in this folder. ````// filepath: /Users/milansmacbook/University year 2/DAT5501/DAT5501_Repo/.circleci/README.md
+# .circleci — Beginner-friendly guide
 
-This folder contains CircleCI configuration and minimal test code for the DAT5501_Repo. It is intended to run automated tests and any CI checks configured in `config.yml`.
+This folder contains simple CircleCI configuration and a tiny example test. It is used to show how continuous integration (CI) can run tests automatically for the repository.
 
-## Contents
-- `config.yml` — CircleCI pipeline configuration.
-- `milan_function.py` — Example/module under test.
-- `requirements.txt` — Python dependencies used by the CI job(s).
-- `test_milan.py` — Pytest test file for `milan_function.py`.
+Why this folder exists
+- Demonstrates a basic CI pipeline that installs dependencies and runs tests.
+- Provides a minimal example you can run locally to understand CI behaviour.
+- Keeps CI-related files together so the rest of the project stays clean.
 
-## Purpose
-- Provide a reproducible CI pipeline (via CircleCI) that installs dependencies and runs the test suite.
-- Allow local reproduction of the CI steps for development and debugging.
+What is here
+- `config.yml` — CircleCI pipeline configuration (what the CI server runs).
+- `requirements.txt` — Python packages needed by the CI job and the tests.
+- `milan_function.py` — Small example module used by the tests.
+- `test_milan.py` — A minimal pytest test for the example module.
+
+Simple explanation of CI (for beginners)
+- Continuous Integration (CI) runs automated tasks (like tests) whenever code changes.
+- CircleCI reads `config.yml` and runs the steps defined there (install, test, etc.).
+- CI helps catch errors early and ensures code in the repository works consistently.
+
+Run the example locally (very simple)
+1. Open a terminal in the repository root.
+2. Create and activate a virtual environment:
+   ```
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+3. Install dependencies:
+   ```
+   pip install -r .circleci/requirements.txt
+   ```
+4. Run the tests with pytest:
+   ```
+   pytest -q .circleci/test_milan.py
+   ```
+
+If you see tests pass, the CI pipeline would likely pass too (assuming similar environment).
+
+Troubleshooting (common beginner issues)
+- "Module not found" — make sure your virtual environment is activated and you installed requirements.
+- Wrong Python version — check `config.yml` for the Python version used in CI and use the same locally.
+- Path problems — run the commands from the repository root so paths like `.circleci/test_milan.py` resolve.
+
+Notes for learning
+- Open `config.yml` to see a step-by-step description of what CI does (install, run tests).
+- Open `test_milan.py` and `milan_function.py` to see a minimal example of a function and its test.
+- If you want to try CircleCI locally, the CircleCI CLI can emulate jobs, but it is optional.
+
+Contributing tips
+- Keep tests small and deterministic (no random behaviour).
+- Add new test files under `.circleci/` or the repo test folder and update `requirements.txt` if you add dependencies.
+- Update `config.yml` if CI needs additional steps (linting, formatting, coverage).
+
+This file is intended as a gentle introduction so you can run and understand the simple CI example in this folder. ````
 

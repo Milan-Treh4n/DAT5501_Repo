@@ -1,89 +1,118 @@
-# Asset price — Apple stock analysis
+# Asset price (Apple Stock)
 
-This folder contains scripts and data for basic analysis of Apple historical stock prices. The code computes and visualises daily and yearly price changes and includes a small data-wrangling step.
+This folder contains data and simple Python scripts that demonstrate basic data cleaning and exploratory analysis of Apple stock prices. It is written for beginners: open a script, run it, and inspect the saved plot/CSV to see what each step does.
 
-Main tasks
-- Data cleaning and preparation
-  - Data_wrangling.py: cleans raw CSV into cleaned_apple_data.csv
-- Daily price analysis
-  - Daily price change/daily_price_change.py: computes daily returns and generates daily plots
-- Yearly price analysis & plotting
-  - yearly_price_change.py: computes yearly changes and saves summary plot(s)
+What’s included
+- apple_historical_data.csv — raw input (downloaded historical prices).
+- Data_wrangling.py — cleans and prepares the raw CSV into cleaned_apple_data.csv.
+- cleaned_apple_data.csv — cleaned dataset used by analysis scripts.
+- yearly_price_change.py — computes and plots yearly price changes (saves a PNG).
+- Daily price change/daily_price_change.py — computes daily returns and saves example plots.
+- apple_stock_price.png, daily_sorting_t_vs_n.png — example output plots.
 
-Files
-- apple_historical_data.csv — raw input data
-- cleaned_apple_data.csv — cleaned output used by analysis scripts
-- Data_wrangling.py — cleaning & preprocessing script
-- yearly_price_change.py — yearly analysis + plotting
-- apple_stock_price.png — example output plot (stock price overview)
-- Daily price change/
-  - daily_price_change.py — daily-return calculations and plots
-  - daily_sorting_t_vs_n.png — example daily-plot
+What each script does (short)
+- Data_wrangling.py: reads the raw CSV, fixes column names/dates, drops or fills missing values, and writes cleaned_apple_data.csv.
+- yearly_price_change.py: reads the cleaned CSV, computes yearly percent changes, and saves a plot and summary.
+- Daily price change/daily_price_change.py: computes daily returns, sorts/analyses them and saves plots to illustrate behaviour.
 
-Quick start (macOS)
-1. Create and activate a virtual environment:
+How to run (macOS, minimal)
+1. Open Terminal at the repository root.
+2. (Optional but recommended) Create and activate a virtual environment:
    ```
    python3 -m venv .venv
    source .venv/bin/activate
    ```
-2. Install minimal dependencies:
+3. Install required packages if needed:
    ```
    pip install pandas numpy matplotlib
    ```
-3. Run the cleaning script:
+4. Run cleaning script:
    ```
    python "Asset price/Data_wrangling.py"
    ```
-4. Run analyses:
+5. Run analyses:
    ```
    python "Asset price/yearly_price_change.py"
    python "Asset price/Daily price change/daily_price_change.py"
    ```
 
-Outputs
-- cleaned_apple_data.csv — cleaned dataset used by other scripts
-- apple_stock_price.png and plots in the Daily price change folder — saved figures for report/include
+Where outputs go
+- cleaned_apple_data.csv — created/overwritten by Data_wrangling.py in this folder.
+- Plots (PNG) — saved in the same folder or the script’s configured path (check the top of each script).
 
-Notes
-- Scripts expect the raw CSV to be present in this folder. Adjust paths if you move files.
-- If you add new plotting or analysis scripts, save figures in this folder or a dedicated `plots/` subfolder for reproducibility.
+Beginner tips and troubleshooting
+- If a script errors with "file not found", confirm apple_historical_data.csv is in this folder or that cleaned_apple_data.csv exists after running the wrangling script.
+- If plots do not appear on screen, check for saved PNG files in the folder.
+- If Python modules are missing, install them with pip (see step 3).
+- Open the scripts in your editor to read the comments — they explain each processing step.
+
+Suggested learning path
+1. Open Data_wrangling.py, run it, inspect cleaned_apple_data.csv.
+2. Open yearly_price_change.py, run it, open the saved plot (apple_stock_price.png).
+3. Run the daily script and compare daily vs yearly behaviour.
 
 Contributing
-- Keep scripts small and deterministic.
-- Add any new Python dependencies to the repo README or a requirements file.
-```// filepath: /Users/milansmacbook/University year 2/DAT5501/DAT5501_Repo/Asset price/README.md
-# Asset price — Apple stock analysis
+- Add new plots to a dedicated `plots/` subfolder.
+- If you add dependencies, list them in a project-level requirements file.
+- Keep scripts small and well-commented so other beginners can follow them.
 
-This folder contains scripts and data for basic analysis of Apple historical stock prices. The code computes and visualises daily and yearly price changes and includes a small data-wrangling step.
+This README is intended to help you run the code, find outputs, and learn by example.// filepath: /Users/milansmacbook/University year 2/DAT5501/DAT5501_Repo/Asset price/README.md
+# Asset price — Beginner guide (Apple stock)
 
-Main tasks
-- Data cleaning and preparation
-  - Data_wrangling.py: cleans raw CSV into cleaned_apple_data.csv
-- Daily price analysis
-  - Daily price change/daily_price_change.py: computes daily returns and generates daily plots
-- Yearly price analysis & plotting
-  - yearly_price_change.py: computes yearly changes and saves summary plot(s)
+This folder contains data and simple Python scripts that demonstrate basic data cleaning and exploratory analysis of Apple stock prices. It is written for beginners: open a script, run it, and inspect the saved plot/CSV to see what each step does.
 
-Files
-- apple_historical_data.csv — raw input data
-- cleaned_apple_data.csv — cleaned output used by analysis scripts
-- Data_wrangling.py — cleaning & preprocessing script
-- yearly_price_change.py — yearly analysis + plotting
-- apple_stock_price.png — example output plot (stock price overview)
-- Daily price change/
-  - daily_price_change.py — daily-return calculations and plots
-  - daily_sorting_t_vs_n.png — example daily-plot
+What’s included
+- apple_historical_data.csv — raw input (downloaded historical prices).
+- Data_wrangling.py — cleans and prepares the raw CSV into cleaned_apple_data.csv.
+- cleaned_apple_data.csv — cleaned dataset used by analysis scripts.
+- yearly_price_change.py — computes and plots yearly price changes (saves a PNG).
+- Daily price change/daily_price_change.py — computes daily returns and saves example plots.
+- apple_stock_price.png, daily_sorting_t_vs_n.png — example output plots.
 
+What each script does (short)
+- Data_wrangling.py: reads the raw CSV, fixes column names/dates, drops or fills missing values, and writes cleaned_apple_data.csv.
+- yearly_price_change.py: reads the cleaned CSV, computes yearly percent changes, and saves a plot and summary.
+- Daily price change/daily_price_change.py: computes daily returns, sorts/analyses them and saves plots to illustrate behaviour.
+
+How to run (macOS, minimal)
+1. Open Terminal at the repository root.
+2. (Optional but recommended) Create and activate a virtual environment:
+   ```
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+3. Install required packages if needed:
+   ```
+   pip install pandas numpy matplotlib
+   ```
+4. Run cleaning script:
+   ```
+   python "Asset price/Data_wrangling.py"
+   ```
+5. Run analyses:
+   ```
+   python "Asset price/yearly_price_change.py"
+   python "Asset price/Daily price change/daily_price_change.py"
    ```
 
-Outputs
-- cleaned_apple_data.csv — cleaned dataset used by other scripts
-- apple_stock_price.png and plots in the Daily price change folder — saved figures for report/include
+Where outputs go
+- cleaned_apple_data.csv — created/overwritten by Data_wrangling.py in this folder.
+- Plots (PNG) — saved in the same folder or the script’s configured path (check the top of each script).
 
-Notes
-- Scripts expect the raw CSV to be present in this folder. Adjust paths if you move files.
-- If you add new plotting or analysis scripts, save figures in this folder or a dedicated `plots/` subfolder for reproducibility.
+Beginner tips and troubleshooting
+- If a script errors with "file not found", confirm apple_historical_data.csv is in this folder or that cleaned_apple_data.csv exists after running the wrangling script.
+- If plots do not appear on screen, check for saved PNG files in the folder.
+- If Python modules are missing, install them with pip (see step 3).
+- Open the scripts in your editor to read the comments — they explain each processing step.
+
+Suggested learning path
+1. Open Data_wrangling.py, run it, inspect cleaned_apple_data.csv.
+2. Open yearly_price_change.py, run it, open the saved plot (apple_stock_price.png).
+3. Run the daily script and compare daily vs yearly behaviour.
 
 Contributing
-- Keep scripts small and deterministic.
-- Add any new Python dependencies to the repo README or a requirements file.
+- Add new plots to a dedicated `plots/` subfolder.
+- If you add dependencies, list them in a project-level requirements file.
+- Keep scripts small and well-commented so other beginners can follow them.
+
+This README is intended to help you run the code, find outputs, and learn by example.
