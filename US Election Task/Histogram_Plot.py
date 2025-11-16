@@ -32,16 +32,17 @@ try:
     # Compute fraction of votes for the candidate per state
     vote_fraction = (candidate_votes / state_totals).dropna()
 
-    # Plot histogram
+    # Plot bar chart
     plt.figure(figsize=(10, 6))
-    plt.hist(vote_fraction, bins=15, edgecolor='black')
-    plt.title(f"Histogram of Fraction of Votes for {candidate_name} by State")
-    plt.xlabel("Fraction of Votes")
-    plt.ylabel("Number of States")
+    plt.bar(vote_fraction.index, vote_fraction.values, color='skyblue', edgecolor='black')
+    plt.title(f"Bar Chart of Fraction of Votes for {candidate_name} by State")
+    plt.xlabel("State")
+    plt.ylabel("Fraction of Votes")
+    plt.xticks(rotation=45, ha='right')
     plt.grid(True, alpha=0.3)
 
     # Save the plot image to the repo
-    plot_filename = f"{candidate_name.replace(' ', '_')}_vote_fraction_histogram.png"
+    plot_filename = f"{candidate_name.replace(' ', '_')}_vote_fraction_bar_chart.png"
     plot_path = os.path.join(script_dir, plot_filename)
     plt.savefig(plot_path, dpi=300, bbox_inches='tight')
 
