@@ -1,4 +1,5 @@
 # Fitting and forecasting activity
+
 This folder contains scripts that analyse global life expectancy data using polynomial regression models (orders 1–9). The project performs two major analytical tasks: forecasting and model testing. All analysis is based on the dataset `life_expectancy.csv`.
 
 Overview
