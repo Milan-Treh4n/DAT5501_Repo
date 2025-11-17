@@ -18,7 +18,7 @@ Simple explanation of CI (for beginners)
 - CircleCI reads `config.yml` and runs the steps defined there (install, test, etc.).
 - CI helps catch errors early and ensures code in the repository works consistently.
 
-Run the example locally (very simple)
+Run the example locally
 1. Open a terminal in the repository root.
 2. Create and activate a virtual environment:
    ```
@@ -52,7 +52,7 @@ Contributing tips
 - Update `config.yml` if CI needs additional steps (linting, formatting, coverage).
 
 This file is intended as a gentle introduction so you can run and understand the simple CI example in this folder. ````// filepath: /Users/milansmacbook/University year 2/DAT5501/DAT5501_Repo/.circleci/README.md
-# .circleci — Beginner-friendly guide
+# .circleci 
 
 This folder contains simple CircleCI configuration and a tiny example test. It is used to show how continuous integration (CI) can run tests automatically for the repository.
 

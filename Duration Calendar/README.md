@@ -13,7 +13,7 @@ What each file does (short)
 - duration_calendar.py: reads random_dates.csv, computes durations between dates (or other date-based summaries) and prints/saves results.
 - unit_testpy.py: contains basic tests you can run to verify the scripts behave as expected.
 
-How to run (macOS, very simple)
+How to run (macOS)
 1. Open Terminal at the repository root.
 2. (Optional) Create and activate a virtual environment:
    ```
@@ -38,7 +38,7 @@ How to run (macOS, very simple)
    pytest "Duration Calendar/unit_testpy.py"
    ```
 
-Beginner tips
+Tips
 - Open the .py files in your editor and read the top comments — they explain what inputs are expected and what outputs are created.
 - If a script says "file not found", make sure `random_dates.csv` exists in the same folder or run the generator first.
 - These scripts use Python’s standard library (datetime, csv, random). No extra packages are required for basic use.

@@ -1,4 +1,4 @@
-# Fitting and forecasting activity — Beginner guide
+# Fitting and forecasting activity 
 
 This folder analyses global life expectancy using polynomial regression models (orders 1–9). It performs two main tasks:
 
@@ -107,7 +107,7 @@ Where outputs are saved
 - Forecast comparison plots → `Creating fitting comparisons/plots/` (one plot per continent).  
 - χ² plot → `Model testing/plots_chi2/chi2_vs_order.png`.
 
-Beginner tips and troubleshooting
+Tips and troubleshooting
 - File not found: ensure `life_expectancy.csv` is in the script folder or a parent folder, or run the script from the repository root.
 - Missing packages: install with pip as shown above.
 - Plots not opening: check the `plots/` or `plots_chi2/` folders for saved PNG files.
