@@ -1,14 +1,41 @@
-# Fitting and forecasting activity 
+# Fitting and forecasting activity
+This folder contains scripts that analyse global life expectancy data using polynomial regression models (orders 1–9). The project performs two major analytical tasks: forecasting and model testing. All analysis is based on the dataset `life_expectancy.csv`.
 
-This folder analyses global life expectancy using polynomial regression models (orders 1–9). It performs two main tasks:
+Overview
+- Forecasting life expectancy (per-continent or global average)
+- Model testing using χ² per degree of freedom to assess fit quality
 
-- Forecasting life expectancy  
-  - Fits polynomial models using all but the last 10 years of data  
-  - Forecasts the final 10 years and visualises polynomial orders 1–9 for continents or global averages
+1) Forecasting Life Expectancy
+The forecasting script uses historical life expectancy data for continents or for the global average. Main steps:
+- Data preparation
+  - Loads `life_expectancy.csv`
+  - Filters data to include only continental values (or excludes continents when calculating a global average)
+  - Extracts life expectancy series depending on availability in the dataset
+- Training / forecast split
+  - Uses all years except the last 10 as training data
+  - Uses the final 10 years as the forecasting period
+- Polynomial model fitting
+  - Fits polynomial regression models of orders 1 through 9
+  - Forecasts the final 10 years using each model
+  - Creates comparison plots showing all polynomial orders on a single figure
+  - Saves plots automatically into a `plots/` directory so they appear in your GitHub repository
 
-- Model testing using χ² per degree of freedom  
-  - Fits polynomial models (orders 1–9) to the training data only  
-  - Computes χ²/ν (goodness-of-fit) and selects the best model order
+This part demonstrates how different model complexities behave and highlights overfitting at higher polynomial orders.
+
+2) Model Testing Using Chi-Squared per Degree of Freedom
+The second script evaluates model quality statistically using only the training portion of the dataset.
+- Model fitting
+  - Fits polynomial regressions (orders 1–9) to the same training data used in the forecasting script
+- Goodness-of-fit calculation
+  - Computes the chi-squared statistic:
+    χ² = Σ ((observed − predicted)² / σ²)
+  - Uses 1% of the observed life expectancy as σ (σ = 0.01 × observed)
+  - Computes reduced chi-squared χ²/ν (ν = degrees of freedom)
+- Model ranking
+  - Prints χ²/ν values for each model order
+  - Automatically identifies the best-fitting orders (prints top results)
+
+This section focuses on statistical fit quality and supports choosing an appropriate model order for forecasting.
 
 All analysis uses the file `life_expectancy.csv`.
 
