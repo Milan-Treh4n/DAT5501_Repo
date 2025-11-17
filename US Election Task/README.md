@@ -49,5 +49,5 @@ Suggested learning steps
 
 This README is intended to help you run the script, find the output, and learn plotting basics by example.
 ```// filepath: /Users/milansmacbook/University year 2/DAT5501/DAT5501_Repo/US Election Task/README.md
-# US Election Task 
+
 
