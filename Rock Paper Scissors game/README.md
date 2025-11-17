@@ -55,4 +55,4 @@ Extending the project
 - Replace PNG images with your own and update the Base64 mapping.
 - Add a GUI (Tkinter) to display images in a window instead of opening external viewers.
 
-This README is intended to help you run and understand the small game by example. Enjoy experimenting!
+This README is intended to help you run and understand the small game by example. 
