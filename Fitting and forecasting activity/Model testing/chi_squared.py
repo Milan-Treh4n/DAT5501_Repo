@@ -1,4 +1,3 @@
-# ...existing code...
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -40,7 +39,6 @@ avg_le = filtered.groupby("Year")["Life_Expectancy"].mean()
 all_years = avg_le.index.values
 all_values = avg_le.values
 
-# Split exactly like the forecasting script:
 # Training = all but last 10 years
 training_years = all_years[:-10]
 training_data = all_values[:-10]
