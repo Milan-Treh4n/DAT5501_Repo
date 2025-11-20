@@ -1,35 +1,25 @@
-📚 DAT5501 Portfolio — Queen Mary University of London
-Welcome to my portfolio for DAT5501 as part of my studies at Queen Mary University of London.
-This repository showcases the work I’ve completed throughout the module — including tasks from lectures, practical exercises, and some of my own mini-projects.
-🔍 What’s Inside
-📖 Lecture & Workshop Tasks
-A collection of tasks completed during weekly sessions, demonstrating my progress in:
-Python basics & programming fundamentals
-Data analysis workflows
-Using libraries such as pandas, NumPy, and matplotlib
-Working with datasets, cleaning data, and visualising it
-🧪 Mini Projects
-A few small self-initiated projects where I’ve practiced:
-Applying data analytics techniques
-Experimenting with pandas
-Exploring topics that interest me
-Building confidence through practical coding
-🛠️ Tools & Skills Used
+DAT5501 Portfolio – Queen Mary University of London
+This repository contains my work for DAT5501 at Queen Mary University of London. It includes the tasks completed from lectures and workshops, as well as some of my own small projects that I created while practising my coding and data skills.
+What’s included
+Lecture and workshop tasks
+Work completed during the taught sessions, covering topics like:
+Python basics
+Data analysis
+pandas, NumPy and simple visualisation
+Working with and cleaning datasets
+Mini projects
+A few small projects I created myself to explore ideas, practise using pandas, and build confidence with data analytics.
+Tools and skills
 Python
 pandas
 NumPy
 Matplotlib / Seaborn
 Jupyter Notebooks
-Data cleaning, exploration, and simple visualisation
-🎯 Purpose of This Portfolio
-This repository is designed to:
-Track my learning journey
-Demonstrate my growing coding and analytical skills
-Collect coursework and personal exploration in one place
-Show my development as a beginner learning data analytics
-📈 Future Additions
-As I continue the module, I plan to add:
-More refined data analysis projects
-Better documentation & comments
+Data cleaning and exploration
+Why this portfolio exists
+I’m still early in my coding journey, so this repo is mainly for tracking progress, experimenting with data, and collecting everything I’ve worked on throughout the module. I’ll keep adding new tasks and projects as I learn more.
+Future ideas
+More structured mini projects
+Better documentation and comments
 Improved visualisations
-New datasets and experiments
+Trying out new datasets
