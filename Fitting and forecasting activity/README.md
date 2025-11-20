@@ -1,92 +1,75 @@
-# Fitting and forecasting activity
+# Fitting and forecasting activity 
 
-This folder contains scripts that analyse global life expectancy data using polynomial regression models (orders 1–9). The project performs two major analytical tasks: forecasting and model testing. All analysis is based on the dataset `life_expectancy.csv`.
+This folder analyses global life expectancy using polynomial regression models (orders 1–9). The project performs two main tasks: forecasting and model testing. All analysis uses the dataset `life_expectancy.csv`.
 
-Overview
-- Forecasting life expectancy (per-continent or global average)
-- Model testing using χ² per degree of freedom to assess fit quality
+Core tasks
+- Forecasting life expectancy
+  - Fits polynomial models (orders 1–9) to historical data (training = all years except last 10)
+  - Forecasts the final 10 years with each model
+  - Produces comparison plots showing orders 1–9 on a single figure
+- Model testing using χ² per degree of freedom
+  - Fits polynomials (orders 1–9) to the training data only
+  - Computes χ² = Σ((observed − predicted)² / σ²) with σ = 0.01 × observed
+  - Computes reduced chi-squared (χ²/ν) and ranks model orders
 
-1) Forecasting Life Expectancy
-The forecasting script uses historical life expectancy data for continents or for the global average. Main steps:
-- Data preparation
-  - Loads `life_expectancy.csv`
-  - Filters data to include only continental values (or excludes continents when calculating a global average)
-  - Extracts life expectancy series depending on availability in the dataset
-- Training / forecast split
-  - Uses all years except the last 10 as training data
-  - Uses the final 10 years as the forecasting period
-- Polynomial model fitting
-  - Fits polynomial regression models of orders 1 through 9
-  - Forecasts the final 10 years using each model
-  - Creates comparison plots showing all polynomial orders on a single figure
-  - Saves plots automatically into a `plots/` directory so they appear in your GitHub repository
+Included scripts and purpose
+- `Model testing/chi_squared.py` — computes χ²/ν for polynomial fits and saves a χ² vs order plot (`plots_chi2/`).
+- `Creating fitting comparisons/fitting_for_continents.py` — fits models per continent (or global average) and saves forecast comparison plots in `Creating fitting comparisons/plots/`.
+- `Parameter Values/life_expectancy_model_selection.py` — computes best-fit parameter values and compares polynomial vs exponential models on the training set:
+  - Loads `life_expectancy.csv`, computes the global average (excludes continent rows) and uses all years except the last 10 as training data.
+  - Fits a chosen polynomial order (prints coefficients, covariance, uncertainties).
+  - Attempts an exponential fit using scipy's curve_fit (prints parameters/covariance when successful).
+  - Computes Bayesian Information Criterion (BIC) for each model from training residuals using σ = 0.01 × observed and prints which model BIC prefers.
+  - Useful to extract numeric parameter values for reports and to compare model forms.
 
-This part demonstrates how different model complexities behave and highlights overfitting at higher polynomial orders.
+How scripts locate the data
+- Scripts search for `life_expectancy.csv` in the script directory and up to three parent directories. Place `life_expectancy.csv` next to these scripts (or in a parent folder) to avoid path errors.
 
-2) Model Testing Using Chi-Squared per Degree of Freedom
-The second script evaluates model quality statistically using only the training portion of the dataset.
-- Model fitting
-  - Fits polynomial regressions (orders 1–9) to the same training data used in the forecasting script
-- Goodness-of-fit calculation
-  - Computes the chi-squared statistic:
-    χ² = Σ ((observed − predicted)² / σ²)
-  - Uses 1% of the observed life expectancy as σ (σ = 0.01 × observed)
-  - Computes reduced chi-squared χ²/ν (ν = degrees of freedom)
-- Model ranking
-  - Prints χ²/ν values for each model order
-  - Automatically identifies the best-fitting orders (prints top results)
+Dependencies
+- pandas, numpy, matplotlib (most scripts)
+- scipy (for `life_expectancy_model_selection.py`)
+- Install with pip if needed:
+  ```
+  pip install pandas numpy matplotlib scipy
+  ```
 
-This section focuses on statistical fit quality and supports choosing an appropriate model order for forecasting.
-
-All analysis uses the file `life_expectancy.csv`.
-
-What’s in this folder
-- `chi_squared.py` — computes χ² per degree of freedom for polynomial fits (orders 1–9) and saves a plot (`plots_chi2/chi2_vs_order.png`).
-- `Creating fitting comparisons/` — scripts to fit and compare polynomial forecasts per continent (saves plots in `plots/`).
-- Other helper scripts and example plots used in the report.
-
-How the scripts find the data
-- Scripts look for `life_expectancy.csv` in the same folder as the script and in up to three parent folders. If the file is not found, the script will print an error and stop.
-- Place `life_expectancy.csv` next to the scripts (or one of the parent folders) to avoid path errors.
-
-Run the scripts (macOS)
-1. Open Terminal in the repository root.
-2. (Optional) Create and activate a virtual environment:
+Run examples (macOS)
+1. Open Terminal at the repository root.
+2. (Optional) Create/activate virtual env:
    ```
    python3 -m venv .venv
    source .venv/bin/activate
    ```
-3. Install packages if you need them:
-   ```
-   pip install pandas numpy matplotlib
-   ```
-4. Run the χ² analysis:
+3. Run χ² analysis:
    ```
    python "Fitting and forecasting activity/Model testing/chi_squared.py"
    ```
-5. Run the continent forecast comparisons:
+4. Run continent forecast comparisons:
    ```
    python "Fitting and forecasting activity/Creating fitting comparisons/fitting_for_continents.py"
    ```
+5. Inspect parameter values / model comparison:
+   ```
+   python "Fitting and forecasting activity/Parameter Values/life_expectancy_model_selection.py"
+   ```
 
-Where outputs are saved
-- Forecast comparison plots → `Creating fitting comparisons/plots/` (one plot per continent).  
-- χ² plot → `Model testing/plots_chi2/chi2_vs_order.png`.
+Outputs
+- Forecast comparison plots → `Creating fitting comparisons/plots/`
+- χ² plot → `Model testing/plots_chi2/chi2_vs_order.png`
+- Parameter prints and BIC summary → terminal output from `life_expectancy_model_selection.py`
 
-Beginner tips and troubleshooting
-- File not found: ensure `life_expectancy.csv` is in the script folder or a parent folder, or run the script from the repository root.
-- Missing packages: install with pip as shown above.
-- Plots not opening: check the `plots/` or `plots_chi2/` folders for saved PNG files.
-- If a script fails, copy the exact error message and open the script in your editor to see which line caused it.
+Beginner tips
+- If a script reports "file not found", ensure `life_expectancy.csv` is in the script folder or a parent folder and run from the repo root.
+- If a required package is missing, install with pip as shown above.
+- To inspect what each script does, open it in your editor and read the top comments and print statements.
 
 Suggested learning path
-1. Open `chi_squared.py` and read the comments to see how training vs testing data are split.  
-2. Run `chi_squared.py` and open the saved χ² plot to understand model fit quality.  
-3. Open `fitting_for_continents.py`, run it, and inspect the continent forecast plots to compare polynomial orders.
+1. Run `chi_squared.py` to see how model order affects χ²/ν.  
+2. Run `fitting_for_continents.py` and view the saved plots to compare fits visually.  
+3. Run `life_expectancy_model_selection.py` to obtain fitted parameters and a BIC-based model comparison.
 
 Notes
-- The analyses are examples for learning model selection and forecasting. They are not production pipelines.
-- Keep `life_expectancy.csv` near these scripts for an easy start.
+- These scripts are educational examples for model selection and forecasting, not production workflows. Adjust σ, model choices or data filters to explore different assumptions.
 ```// filepath: /Users/milansmacbook/University year 2/DAT5501/DAT5501_Repo/Fitting and forecasting activity/README.md
 
 
