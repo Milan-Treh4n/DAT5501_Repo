@@ -1,21 +1,22 @@
 import random
 
-# Questions database by theme and difficulty
-quiz_questions = {
-    "sport": {
-        "easy": [
-            ("How many players are on a football team on the field?", ["11", "eleven"]),
-            ("Which sport uses a shuttlecock?", ["badminton"]),
-            ("In basketball, how many points is a free throw worth?", ["1", "one"]),
-            ("Which sport is known as 'the king of sports'?", ["football", "soccer"]),
-            ("In tennis, what is the term for a score of zero?", ["love"]),
-            ("How many bases are there in baseball?", ["4", "four"]),
-            ("Which country won the 2018 FIFA World Cup?", ["france"]),
-            ("What sport uses a puck?", ["ice hockey", "hockey"]),
-            ("In which sport can you get a 'hole-in-one'?", ["golf"]),
-            ("How long is an Olympic swimming pool?", ["50", "50m", "50 metres", "50 meters"]),
-        ]
-    }
+
+def normalize(s):
+    return "".join(s.lower().strip().split())
+
+# Ask user for difficulty and theme
+difficulty = input("Choose difficulty (easy, medium, hard, challenge): ").strip().lower()
+theme = input("Choose a theme (sport, science, history, general): ").strip().lower()
+
+# Basic validation to avoid KeyError later
+if difficulty not in questions:
+    print(f"Unknown difficulty '{difficulty}', defaulting to 'easy'.")
+    difficulty = "easy"
+
+if theme not in questions[difficulty]:
+    print(f"Unknown theme '{theme}' for difficulty '{difficulty}', defaulting to first available theme.")
+    theme = next(iter(questions[difficulty]))
+# ...existing code...
 
 
 def normalize(s):
