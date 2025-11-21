@@ -1,7 +1,7 @@
 import json
 import os
 import random
-from datetime import date
+from datetime import date, time
 from quiz_questions.sport import quiz_questions_sport
 from quiz_questions.science import quiz_questions_science
 from quiz_questions.history import quiz_questions_history
@@ -40,8 +40,8 @@ for _ in range(10):
     question, answers = random.choice(all_quiz_questions[theme][difficulty])
     selected_questions.append((question, answers))
 
-# Normalize function
-def normalize(s):
+# Normalise function
+def normalise(s):
     return "".join(s.lower().strip().split())
 
 # Run the quiz
@@ -49,8 +49,8 @@ score = 0
 for i, (question, answers) in enumerate(selected_questions, 1):
     print(f"\nQuestion {i}: {question}")
     user_answer = input("Your answer: ").strip()
-    user_norm = normalize(user_answer)
-    acceptable = [normalize(a) for a in answers]
+    user_norm = normalise(user_answer)
+    acceptable = [normalise(a) for a in answers]
     if user_norm in acceptable:
         print("Correct! ✅")
         score += 1
@@ -60,6 +60,7 @@ for i, (question, answers) in enumerate(selected_questions, 1):
 # Save progress
 progress = {
     "last_played": today,
+    "last_played_time": time.now().strftime("%H:%M:%S"),
     "score": score,
     "questions_answered": [q for q, _ in selected_questions]
 }
