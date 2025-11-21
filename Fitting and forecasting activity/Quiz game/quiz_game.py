@@ -1,6 +1,5 @@
 import random
 
-
 def normalize(s):
     return "".join(s.lower().strip().split())
 
