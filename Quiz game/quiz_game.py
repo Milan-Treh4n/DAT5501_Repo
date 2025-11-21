@@ -50,8 +50,3 @@ for i, (question, answers) in enumerate(selected_questions, 1):
 
 print(f"\nYour final score: {score}/10")
 
-# Adding game modes
-def daily_challenge():
-    random.seed()  # Seed with current time or system state
-    selected_questions = random.sample(all_quiz_questions[theme][difficulty], 10)
-    return selected_questions
