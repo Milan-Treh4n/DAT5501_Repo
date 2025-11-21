@@ -39,7 +39,7 @@ quiz_questions_science = {
         ("What blood cells fight infection?", ["white blood cells", "leukocytes"]),
         ("What part of the Earth is liquid metal?", ["outer core"]),
         ("What scientist proposed the three laws of motion?", ["isaac newton", "newton"]),
-        ("What type of energy is stored in food?", ["chemical energy"]),
+        ("What type of energy is stored in food?", ["chemical energy", "chemical"]),
         ("What organelle is known as the powerhouse of the cell?", ["mitochondria"]),
         ("What metal is liquid at room temperature?", ["mercury"]),
         ("What is the most abundant element in the universe?", ["hydrogen"]),
