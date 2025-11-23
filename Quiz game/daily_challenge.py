@@ -1,7 +1,7 @@
 import json
 import os
 import random
-from datetime import date, time
+from datetime import datetime, date
 from quiz_questions.sport import quiz_questions_sport
 from quiz_questions.science import quiz_questions_science
 from quiz_questions.history import quiz_questions_history
@@ -27,12 +27,13 @@ else:
 
 today = str(date.today())
 
+# Prevent replaying the same day
 if progress.get("last_played") == today:
     print("You have already completed today's Daily Challenge!")
     print(f"Score: {progress.get('score')}/10")
     exit(0)
 
-# Select 10 random questions from all themes and difficulties
+# Pick 10 questions from random themes + difficulties
 selected_questions = []
 for _ in range(10):
     theme = random.choice(list(all_quiz_questions.keys()))
@@ -44,25 +45,37 @@ for _ in range(10):
 def normalise(s):
     return "".join(s.lower().strip().split())
 
-# Run the quiz
+# Run quiz
 score = 0
+answered_list = []
+
 for i, (question, answers) in enumerate(selected_questions, 1):
     print(f"\nQuestion {i}: {question}")
     user_answer = input("Your answer: ").strip()
     user_norm = normalise(user_answer)
     acceptable = [normalise(a) for a in answers]
-    if user_norm in acceptable:
+
+    correct = user_norm in acceptable
+
+    if correct:
         print("Correct! ✅")
         score += 1
     else:
         print(f"Not quite. Correct answer: {', '.join(answers)}")
 
-# Save progress
+    # store what user answered
+    answered_list.append({
+        "question": question,
+        "user_answer": user_answer,
+        "correct": correct
+    })
+
+# Save progress to JSON
 progress = {
     "last_played": today,
-    "last_played_time": time.now().strftime("%H:%M:%S"),
+    "last_played_time": datetime.now().strftime("%H:%M:%S"),
     "score": score,
-    "questions_answered": [q for q, _ in selected_questions]
+    "questions_answered": answered_list
 }
 
 with open(progress_file, "w") as f:

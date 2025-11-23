@@ -1,16 +1,57 @@
 {
-    "last_played": "2025-11-21",
-    "score": 5,
+    "last_played": "2025-11-23",
+    "last_played_time": "15:01:39",
+    "score": 7,
     "questions_answered": [
-        "Who ran the first official sub-4-minute mile?",
-        "What vitamin do we get from sunlight?",
-        "Which chess player held the world championship title for 15 years straight?",
-        "Who was the first female Prime Minister of the UK?",
-        "Which fruit is red and often associated with keeping doctors away?",
-        "What is H2O commonly known as?",
-        "Which country won the first Rugby World Cup in 1987?",
-        "What is the study of fungi called?",
-        "What event is known as the 'Great Fire' in 1666?",
-        "Who has the most NBA championships as a player?"
+        {
+            "question": "Which sport introduced the VAR system at top professional levels?",
+            "user_answer": "football",
+            "correct": true
+        },
+        {
+            "question": "What is the second planet from the sun?",
+            "user_answer": "venus",
+            "correct": true
+        },
+        {
+            "question": "Which fruit is yellow and curved?",
+            "user_answer": "banana",
+            "correct": true
+        },
+        {
+            "question": "Which empire was known as the 'Land of the Rising Sun'?",
+            "user_answer": "japan",
+            "correct": true
+        },
+        {
+            "question": "Which fruit is yellow and curved?",
+            "user_answer": "banana",
+            "correct": true
+        },
+        {
+            "question": "What is 5 + 7?",
+            "user_answer": "12",
+            "correct": true
+        },
+        {
+            "question": "What is the term for water in all three states existing together?",
+            "user_answer": "plasma",
+            "correct": false
+        },
+        {
+            "question": "How many meters is the standard velodrome cycling track?",
+            "user_answer": "250",
+            "correct": true
+        },
+        {
+            "question": "Which planet has the longest day?",
+            "user_answer": "uranus",
+            "correct": false
+        },
+        {
+            "question": "How many legs does an insect have?",
+            "user_answer": "8",
+            "correct": false
+        }
     ]
 }
