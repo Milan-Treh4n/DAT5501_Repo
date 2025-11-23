@@ -50,30 +50,40 @@ N = len(training_years)
 sigma = 0.01 * training_data
 
 orders = range(1, 10)
+chi2_list = []
 chi2_per_dof = []
+bic_list = []
 
-print("Computing chi-squared per degree of freedom using training data only:\n")
+print("Computing chi-squared, χ²/ν, and BIC for polynomial orders 1–9:\n")
 
 for deg in orders:
     # Fit polynomial on training data only
     coeffs = np.polyfit(training_years, training_data, deg)
     poly = np.poly1d(coeffs)
-    
-    # Model evaluated on training data
+
+    # Predictions
     model_pred = poly(training_years)
-    
-    # Compute chi-squared
+
+    # Calculate chi-squared
     chi2 = np.sum(((training_data - model_pred) / sigma) ** 2)
-    dof = N - (deg + 1)
+    chi2_list.append(chi2)
+
+    # Degrees of freedom
+    k = deg + 1           
+    dof = N - k
     chi2_nu = chi2 / dof
     chi2_per_dof.append(chi2_nu)
-    
-    print(f"Order {deg}: χ²/ν = {chi2_nu:.4f}")
+
+    # BIC = k ln(N) + χ²
+    bic = k * np.log(N) + chi2
+    bic_list.append(bic)
+
+    print(f"Order {deg}: χ² = {chi2:.2f}, χ²/ν = {chi2_nu:.4f}, BIC = {bic:.2f}")
 
 # Save plot directory
 os.makedirs("plots_chi2", exist_ok=True)
 
-# Plot chi-squared per degree of freedom
+# Plot χ² per degree of freedom
 plt.figure(figsize=(8, 5))
 plt.plot(orders, chi2_per_dof, marker="o")
 plt.title("Chi-squared per Degree of Freedom (Training Data)")
@@ -83,12 +93,29 @@ plt.grid(True)
 plt.savefig("plots_chi2/chi2_vs_order.png", dpi=300)
 plt.close()
 
-# Determine the best order
-best_order = orders[np.argmin(chi2_per_dof)]
-best_value = min(chi2_per_dof)
+# Plot BIC vs polynomial order
+plt.figure(figsize=(8, 5))
+plt.plot(orders, bic_list, marker="o")
+plt.title("Bayesian Information Criterion (BIC) vs Polynomial Order")
+plt.xlabel("Polynomial Order")
+plt.ylabel("BIC Value")
+plt.grid(True)
+plt.savefig("plots_chi2/bic_vs_order.png", dpi=300)
+plt.close()
 
-print(f"\nBest-fitting model: Polynomial order {best_order} with χ²/ν = {best_value:.4f}")
-print("Plot saved to: plots_chi2/chi2_vs_order.png")
+# Determine best model by BIC
+best_bic_order = orders[np.argmin(bic_list)]
+best_bic_value = min(bic_list)
+
+# Determine best model by chi²/ν
+best_chi_order = orders[np.argmin(chi2_per_dof)]
+best_chi_value = min(chi2_per_dof)
+
+print("\n================ RESULTS ================\n")
+print(f"Best χ²/ν model: order {best_chi_order} with χ²/ν = {best_chi_value:.4f}")
+print(f"Best BIC model: order {best_bic_order} with BIC = {best_bic_value:.2f}")
+print("\nPlots saved to: plots_chi2/")
+
 
 
 
