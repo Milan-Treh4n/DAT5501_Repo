@@ -48,5 +48,8 @@ for i, (question, answers) in enumerate(selected_questions, 1):
     else:
         print(f"Not quite. The correct answer is: {', '.join(answers)}")
 
+    # Ensure no question is repeated
+    selected_questions.remove((question, answers))
+
 print(f"\nYour final score: {score}/10")
 

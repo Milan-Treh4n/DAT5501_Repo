@@ -70,6 +70,9 @@ for i, (question, answers) in enumerate(selected_questions, 1):
         "correct": correct
     })
 
+    # Ensure no question is repeated
+    selected_questions.remove((question, answers)) 
+
 # Save progress to JSON
 progress = {
     "last_played": today,
