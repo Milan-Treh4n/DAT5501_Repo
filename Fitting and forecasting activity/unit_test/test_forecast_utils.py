@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from unit_test.forecast_utils import calculate_mae, calculate_rmse
+from .forecast_utils import calculate_mae, calculate_rmse
 
 def test_calculate_mae_perfect_predictions():
     assert calculate_mae([1, 2, 3], [1, 2, 3]) == 0
