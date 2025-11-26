@@ -28,7 +28,7 @@ if difficulty not in all_quiz_questions[theme]:
     print("Invalid difficulty")
     exit(1)
 
-# Select 10 random questions
+# Select 10 random questions (unique) — no need to remove during the loop
 selected_questions = random.sample(all_quiz_questions[theme][difficulty], 10)
 
 score = 0
@@ -48,8 +48,7 @@ for i, (question, answers) in enumerate(selected_questions, 1):
     else:
         print(f"Not quite. The correct answer is: {', '.join(answers)}")
 
-    # Ensure no question is repeated
-    selected_questions.remove((question, answers))
 
 print(f"\nYour final score: {score}/10")
+
 

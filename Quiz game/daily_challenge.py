@@ -15,8 +15,9 @@ all_quiz_questions = {
     "general": quiz_questions_general
 }
 
-# File to save daily progress
-progress_file = "daily_progress.json"
+# Save progress next to this script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+progress_file = os.path.join(script_dir, "daily_progress.json")
 
 # Load previous progress if exists
 if os.path.exists(progress_file):
@@ -33,13 +34,20 @@ if progress.get("last_played") == today:
     print(f"Score: {progress.get('score')}/10")
     exit(0)
 
-# Pick 10 questions from random themes + difficulties
-selected_questions = []
-for _ in range(10):
-    theme = random.choice(list(all_quiz_questions.keys()))
-    difficulty = random.choice(list(all_quiz_questions[theme].keys()))
-    question, answers = random.choice(all_quiz_questions[theme][difficulty])
-    selected_questions.append((question, answers))
+# Build a pool of all (question, answers) tuples
+pool = []
+for theme in all_quiz_questions:
+    for difficulty in all_quiz_questions[theme]:
+        for q, a in all_quiz_questions[theme][difficulty]:
+            pool.append((q, a))
+
+if not pool:
+    print("No questions available.")
+    exit(1)
+
+# Select up to 10 unique questions
+num_questions = min(10, len(pool))
+selected_questions = random.sample(pool, num_questions)
 
 # Normalise function
 def normalise(s):
@@ -70,9 +78,6 @@ for i, (question, answers) in enumerate(selected_questions, 1):
         "correct": correct
     })
 
-    # Ensure no question is repeated
-    selected_questions.remove((question, answers)) 
-
 # Save progress to JSON
 progress = {
     "last_played": today,
@@ -84,4 +89,4 @@ progress = {
 with open(progress_file, "w") as f:
     json.dump(progress, f, indent=4)
 
-print(f"\nDaily Challenge complete! Your score: {score}/10")
+print(f"\nDaily Challenge complete! Your score: {score}/{num_questions}")
