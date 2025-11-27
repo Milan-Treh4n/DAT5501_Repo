@@ -13,3 +13,6 @@ print(car_evaluation.metadata)
   
 # variable information 
 print(car_evaluation.variables) 
+
+# first five rows of feature data
+print(X.head())
