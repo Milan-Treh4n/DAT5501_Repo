@@ -13,4 +13,3 @@ print(car_evaluation.metadata)
   
 # variable information 
 print(car_evaluation.variables) 
-
