@@ -1,6 +1,15 @@
 # Decision Tree mini-project 
 
-This folder contains a small, beginner-friendly example showing how to train and evaluate a decision tree classifier on the UCI Car Evaluation dataset. It demonstrates loading data, basic categorical encoding, training a classifier with scikit-learn, making predictions and viewing simple evaluation metrics.
+This folder contains a small, beginner-friendly example showing how to train and evaluate a decision tree classifier on the UCI Car Evaluation dataset. It demonstrates loading data, basic categorical encoding, training a classifier with scikit-learn, making predictions and viewing simple evaluation metrics. The goal is to predict how acceptable a car is based on several categorical attributes describing cost, safety, and size.
+
+The decison tree answers the question: "Given features like buying price, maintenance cost, safety, number of doors, and trunk space, how acceptable is this car?”
+
+The model predicts the final rating of a car, which falls into one of these four categories:
+Label	Meaning
+unacc	Unacceptable
+acc	Acceptable
+good	Good
+vgood	Very Good
 
 What this folder is for
 - Learn how to load a dataset and inspect its columns.
