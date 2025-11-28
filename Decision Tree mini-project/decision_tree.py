@@ -3,11 +3,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import classification_report, confusion_matrix
+import matplotlib.pyplot as plt
 
-  
-# fetch dataset 
-car_evaluation = fetch_ucirepo(id=19) 
-  
+# fetch dataset
+car_evaluation = fetch_ucirepo(id=19)
+
 # data (as pandas dataframes) 
 X = car_evaluation.data.features 
 y = car_evaluation.data.targets 
@@ -81,3 +81,4 @@ print(classification_report(
 
 print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
+
